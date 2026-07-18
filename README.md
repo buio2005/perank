@@ -4,6 +4,8 @@
 
 # PeRank
 
+**Website: [perank.tivustream.com](https://perank.tivustream.com)** · [Privacy policy](https://perank.tivustream.com/privacy.html)
+
 **Relevance instead of advertising.** PeRank reverses and re-ranks search results, hides sponsored
 ones and helps you dig past the first page.
 

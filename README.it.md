@@ -4,11 +4,13 @@
 
 # PeRank
 
+**Sito: [perank.tivustream.com](https://perank.tivustream.com)** · [Informativa privacy](https://perank.tivustream.com/privacy.html)
+
 **Pertinenza al posto della pubblicità.** Inverte e riordina i risultati di ricerca,
 rimuove gli sponsor e ti aiuta a scavare oltre la prima pagina.
 
 
-Estensione per Chromium (Chrome, Edge, Brave, Opera) che, sulla pagina dei risultati dei principali motori di ricerca:
+Estensione per Chromium (Chrome, Edge, Brave, Opera) e Firefox che, sulla pagina dei risultati dei principali motori di ricerca:
 
 - **rimuove gli annunci / risultati sponsorizzati**;
 - **riordina i risultati mostrati** in tre modalità — *Originale*, *Inverti*, *Pertinenza* (con badge di punteggio e spiegazione dei criteri al passaggio del mouse);
