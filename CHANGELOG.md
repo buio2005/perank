@@ -2,6 +2,21 @@
 
 All notable changes to PeRank. This project follows [semantic versioning](https://semver.org/).
 
+## [0.11.3] - 2026-07-19
+### Security
+- Removed all `innerHTML` assignments (flagged by the AMO validator). The deep-search results
+  section and the deep-search note are now built with DOM methods (`createElement` / `textContent`),
+  so external result data can never be interpreted as markup. Result links are additionally passed
+  through `_safeHref`, which allows only `http(s)` URLs and blocks `javascript:` and similar schemes.
+  Our own static strings that carry `<em>`/`<strong>` emphasis are rendered by `_miniHtml`, which
+  only ever creates those whitelisted tags and treats everything else as text.
+
+## [0.11.2] - 2026-07-19
+### Added
+- `data_collection_permissions: { required: ["none"] }` in the Gecko manifest block. Firefox
+  requires new extensions (since Nov 2025) to declare their data collection. PeRank collects and
+  transmits nothing, so it declares "none" — which Firefox now shows to the user at install time.
+
 ## [0.11.1] - 2026-07-18
 ### Fixed
 - Spacing of the 👍/👎/⭐ action row. The buttons were correctly placed at the bottom of their own

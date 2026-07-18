@@ -548,6 +548,28 @@
 
   function _abs(u) { try { return new URL(u, location.origin).href; } catch (e) { return u || ""; } }
   function _esc(t) { return (t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  // Accetta come href solo http/https: blocca javascript:, data:, e simili.
+  function _safeHref(u) {
+    var s = String(u || "").trim();
+    return /^https?:\/\//i.test(s) ? s : "#";
+  }
+
+  // Rende in nodi DOM una stringa che puo' contenere SOLO i tag di enfasi
+  // <em>/<strong>/<b>/<i> (usati nelle nostre traduzioni statiche), senza mai
+  // usare innerHTML: qualsiasi altro tag resta testo letterale. Sostituisce
+  // l'assegnazione a innerHTML segnalata dal validatore AMO.
+  function _miniHtml(str, parent) {
+    var re = /<(\/?)(em|strong|b|i)>/gi, last = 0, m, stack = [parent];
+    function top() { return stack[stack.length - 1]; }
+    while ((m = re.exec(str))) {
+      if (m.index > last) top().appendChild(document.createTextNode(str.slice(last, m.index)));
+      if (m[1] === "/") { if (stack.length > 1) stack.pop(); }
+      else { var el = document.createElement(m[2].toLowerCase()); top().appendChild(el); stack.push(el); }
+      last = re.lastIndex;
+    }
+    if (last < str.length) top().appendChild(document.createTextNode(str.slice(last)));
+  }
   function _firstIn(doc, list) {
     for (var i = 0; i < list.length; i++) { var el = doc.querySelector(list[i]); if (el) return el; }
     return null;
@@ -620,16 +642,48 @@
     if (!items.length) { var ex = document.getElementById(NS + "-deep"); if (ex) ex.remove(); return; }
     if (currentMode === "inverti") items.reverse();
     else if (currentMode === "pertinenza") items.sort(function (a, b) { return b.score - a.score || a.idx - b.idx; });
-    var html = '<div class="' + NS + '-deep-head">' + _esc(t("deepSecHead", items.length)) + '</div>';
+
+    // Ricostruzione via DOM (niente innerHTML): i risultati profondi arrivano
+    // da pagine esterne, quindi titolo/URL/snippet vanno inseriti come testo.
+    sec.textContent = "";
+    var head = document.createElement("div");
+    head.className = NS + "-deep-head";
+    head.textContent = t("deepSecHead", items.length);
+    sec.appendChild(head);
+
     items.forEach(function (o) {
-      var badge = currentMode === "pertinenza" ? ' <span class="' + NS + '-badge">pertinenza ' + o.score + '</span>' : '';
-      html += '<div class="' + NS + '-deep-row">' +
-        '<a class="' + NS + '-deep-title" href="' + o.it.url.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener">' + _esc(o.it.title) + '</a>' + badge +
-        '<div class="' + NS + '-deep-url">' + _esc(o.it.url) + '</div>' +
-        (o.it.snippet ? '<div class="' + NS + '-deep-snip">' + _esc(o.it.snippet) + '</div>' : '') +
-        '</div>';
+      var row = document.createElement("div");
+      row.className = NS + "-deep-row";
+
+      var a = document.createElement("a");
+      a.className = NS + "-deep-title";
+      a.href = _safeHref(o.it.url);
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = o.it.title;
+      row.appendChild(a);
+
+      if (currentMode === "pertinenza") {
+        row.appendChild(document.createTextNode(" "));
+        var badge = document.createElement("span");
+        badge.className = NS + "-badge";
+        badge.textContent = "pertinenza " + o.score;
+        row.appendChild(badge);
+      }
+
+      var urlDiv = document.createElement("div");
+      urlDiv.className = NS + "-deep-url";
+      urlDiv.textContent = o.it.url;
+      row.appendChild(urlDiv);
+
+      if (o.it.snippet) {
+        var snip = document.createElement("div");
+        snip.className = NS + "-deep-snip";
+        snip.textContent = o.it.snippet;
+        row.appendChild(snip);
+      }
+      sec.appendChild(row);
     });
-    sec.innerHTML = html;
   }
 
   function _findNextButton() {
@@ -864,17 +918,39 @@
     var note = document.createElement("div");
     note.id = NS + "-note";
     note.className = NS + "-note";
-    note.innerHTML =
-      '<div class="' + NS + '-note-title">' + _esc(t("deepNoteTitle")) + '</div>' +
-      '<p class="' + NS + '-note-body">' + t("deepNoteBody") + '</p>' +
-      '<div class="' + NS + '-note-actions">' +
-      '<button id="' + NS + '-deep-btn" class="' + NS + '-cta">' + _esc(t("deepNoteCta")) + '</button>' +
-      '<span class="' + NS + '-note-free">' + _esc(t("deepNoteFree", ADAPTER.cfg.name)) + '</span>' +
-      '</div>' +
-      '<div class="' + NS + '-note-engines">' + t("deepNoteEngines") + '</div>';
+
+    // Costruzione via DOM (niente innerHTML). deepNoteBody/Engines sono nostre
+    // stringhe statiche con <em>/<strong>: le rende _miniHtml in modo sicuro.
+    var title = document.createElement("div");
+    title.className = NS + "-note-title";
+    title.textContent = t("deepNoteTitle");
+    note.appendChild(title);
+
+    var body = document.createElement("p");
+    body.className = NS + "-note-body";
+    _miniHtml(t("deepNoteBody"), body);
+    note.appendChild(body);
+
+    var actions = document.createElement("div");
+    actions.className = NS + "-note-actions";
+    var btn = document.createElement("button");
+    btn.id = NS + "-deep-btn";
+    btn.className = NS + "-cta";
+    btn.textContent = t("deepNoteCta");
+    actions.appendChild(btn);
+    var free = document.createElement("span");
+    free.className = NS + "-note-free";
+    free.textContent = t("deepNoteFree", ADAPTER.cfg.name);
+    actions.appendChild(free);
+    note.appendChild(actions);
+
+    var engines = document.createElement("div");
+    engines.className = NS + "-note-engines";
+    _miniHtml(t("deepNoteEngines"), engines);
+    note.appendChild(engines);
 
     container.parentElement.appendChild(note);
-    document.getElementById(NS + "-deep-btn").addEventListener("click", function () {
+    btn.addEventListener("click", function () {
       window.open(deepUrl(ADAPTER.getQuery()), "_blank", "noopener");
     });
   }
