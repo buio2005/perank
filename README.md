@@ -159,6 +159,11 @@ live, but a selector may need a small touch-up over time — and only the corres
 - Tested on desktop layouts. Mobile support is planned.
 - Google removed the `&num=100` parameter in September 2025: this is why deep search relies on open
   engines rather than on inflating the current page.
+- **Yandex: ad removal is unverified.** Re-ranking, relevance scoring, votes and gems all work as
+  expected. However, no test query on the international domain returned a single ad, so we could not
+  validate the ad selectors against a live example. We prefer to say so rather than write a selector
+  by guesswork: an over-broad one would hide legitimate results. Yandex also obfuscates its CSS
+  classes on every build, which makes it the engine most likely to need occasional touch-ups.
 
 ## License
 

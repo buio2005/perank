@@ -13,6 +13,13 @@ All notable changes to PeRank. This project follows [semantic versioning](https:
 ### Fixed
 - The description line under the mode buttons kept the previous language after a switch: it was
   built before the stored language had been read.
+- **Yandex was not working at all.** Two separate problems: the manifest match pattern required a
+  trailing slash (`/search/*`) that the real URL does not have, so the content script was never
+  injected; and once injected, the results container pointed four levels too high, which collapsed
+  every result onto a single block so nothing could be re-ranked. Now anchored to the `<ul id="search-...">`
+  of the 2026 "Futuris" layout and to the non-obfuscated `.Organic*` selectors.
+- Yandex ad removal remains **unverified**: no test query produced an ad to validate against.
+  Documented as a known limit rather than guessed at.
 
 ### Why
 `chrome.i18n` follows the browser interface language, which on Windows is inherited from the

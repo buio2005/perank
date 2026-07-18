@@ -30,8 +30,8 @@
         "*://html.duckduckgo.com/*",
         "*://www.startpage.com/sp/search*",
         "*://www.startpage.com/do/search*",
-        "*://yandex.com/search/*",
-        "*://yandex.ru/search/*",
+        "*://*.yandex.com/search*",
+        "*://*.yandex.ru/search*",
         "*://search.brave.com/search*",
         "*://www.ecosia.org/search*",
         "*://search.yahoo.com/search*"

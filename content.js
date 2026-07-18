@@ -134,10 +134,13 @@
     {
       id: "yandex", name: "Yandex", isOpen: false, deepSearch: "newtab",
       host: /(^|\.)yandex\./, path: /\/search/, queryParam: "text",
-      containers: ["#search-result", ".content__left", ".main__content", ".serp-list"],
-      titleSel: "a.OrganicTitle-Link, h2 a, h2",
+      // Layout "Futuris" (2026): i risultati sono <li> dentro <ul id="search-...">.
+      // Le classi sono offuscate e cambiano a ogni build: ci ancoriamo all'id del
+      // <ul>, che e' stabile nel prefisso, e ai selettori .Organic* non offuscati.
+      containers: ["ul[id^='search-']", "#search-result", ".serp-list", ".content__left", ".main__content"],
+      titleSel: "a.OrganicTitle-Link, h2.OrganicTitle-LinkText, h2 a, h2",
       snippetSel: ".OrganicText, .organic__text",
-      adSelectors: [".serp-adv", ".serp-item_type_adv", "[data-fast-name='direct']", ".Organic_adv"],
+      adSelectors: [".serp-adv", ".serp-item_type_adv", "[data-fast-name='direct']", ".Organic_adv", ".Label_type_direct"],
       adLabels: ["annuncio", "реклама", "sponsorizzato", "sponsored"]
     },
     {

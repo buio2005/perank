@@ -147,6 +147,7 @@ Il markup dei motori cambia spesso ed è spesso offuscato. Google è stato testa
 - Il riordino sposta i blocchi che condividono lo stesso contenitore del primo risultato; sezioni speciali (box "Le persone hanno chiesto anche", caroselli, ecc.) non vengono riordinate.
 - Testato sul layout desktop. Mobile e rifinitura selettori dei singoli motori nelle prossime iterazioni.
 - `&num=100` è stato rimosso da Google (set. 2025): per questo la profondità passa dal rilancio su motore aperto, non dal gonfiare la pagina.
+- **Yandex: rimozione degli sponsor non verificata.** Riordino, punteggio di pertinenza, voti e gemme funzionano regolarmente. Non siamo però riusciti a far comparire un annuncio in nessuna delle ricerche di prova sul dominio internazionale, quindi non abbiamo potuto validare i selettori pubblicitari dal vivo. Preferiamo dichiararlo invece di scrivere un selettore "a occhio": uno troppo largo nasconderebbe risultati legittimi. Yandex offusca inoltre le classi CSS a ogni build, quindi è il motore per cui è più probabile servano ritocchi nel tempo.
 
 ## Licenza
 
