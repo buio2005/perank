@@ -156,7 +156,11 @@
 .rvs-acts {
   display: flex;
   gap: 6px;
-  margin: 6px 0 2px;
+  /* Piu' spazio sotto che sopra: i pulsanti devono "appartenere" visivamente
+     al risultato che li precede, non a quello che segue.
+     Il margine superiore e' negativo per compensare il margin-bottom che il
+     motore applica gia' allo snippet: senza, la riga risulta troppo staccata. */
+  margin: -8px 0 18px;
   align-items: center;
   order: 9999;   /* nei layout flex (es. Google) resta sempre in fondo */
   width: 100%;

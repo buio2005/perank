@@ -2,6 +2,16 @@
 
 All notable changes to PeRank. This project follows [semantic versioning](https://semver.org/).
 
+## [0.11.1] - 2026-07-18
+### Fixed
+- Spacing of the 👍/👎/⭐ action row. The buttons were correctly placed at the bottom of their own
+  result, but the margins (6px above, 2px below) made them sit closer to the *next* result, so they
+  looked like they belonged to it. Inverted to 4px above and 18px below.
+
+### Added
+- `tools/build-package.py`: builds the store `.zip` from an explicit file list, so an incomplete
+  package fails loudly instead of shipping silently.
+
 ## [0.11.0] - 2026-07-18
 ### Added
 - **Language selector** in the popup: Automatic / Italiano / English. Automatic mode follows the
