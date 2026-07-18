@@ -8,6 +8,16 @@ All notable changes to PeRank. This project follows [semantic versioning](https:
   result, but the margins (6px above, 2px below) made them sit closer to the *next* result, so they
   looked like they belonged to it. Inverted to 4px above and 18px below.
 
+- **DuckDuckGo: the "Searches related to..." box was treated as a result**, complete with vote
+  buttons and a relevance badge. The modern site reuses the legacy `.result__a` class for the
+  related-search chips, so a selector meant for organic results matched them instead. Legacy classes
+  are now scoped to the classic layout and the React site is anchored to `article[data-testid='result']`.
+
+- **Google: re-ranking stopped working.** Results are now nested in an unclassed `<div>` inside
+  `#rso`, so every title resolved to that same single block and there was nothing left to reorder.
+  Same pattern already seen on Ecosia. The intermediate level is now the first container tried,
+  with the previous selectors kept as fallbacks.
+
 ### Added
 - `tools/build-package.py`: builds the store `.zip` from an explicit file list, so an incomplete
   package fails loudly instead of shipping silently.

@@ -83,7 +83,11 @@
     {
       id: "google", name: "Google", isOpen: false, deepSearch: "newtab",
       host: /(^|\.)google\./, path: /\/search/, queryParam: "q",
-      containers: ["#search #rso", "#rso", "#search"],
+      // Google (lug. 2026) annida i risultati in un <div> anonimo dentro #rso:
+      // senza questo livello tutti i titoli risalivano allo stesso blocco e il
+      // riordino non aveva nulla da spostare. Il selettore senza classe e' messo
+      // per primo; se un giorno la struttura torna piatta, ricadiamo su #rso.
+      containers: ["#rso > div:not([class])", "#search #rso", "#rso", "#search"],
       titleSel: "a h3, h3",
       snippetSel: "div[data-sncf], .VwiC3b, .yXK7lf",
       adSelectors: ["#tads", "#tadsb", "#bottomads", "#taw", "[data-text-ad]", ".uEierd"],
@@ -107,14 +111,18 @@
         "ol.react-results--main", "section[data-testid='mainline']",
         "#links", "#web_content_wrapper", ".results", "#react-layout", "main"
       ],
-      // NB: niente fallback generici "h2" / "h3 a" qui. Il riquadro
-      // "Searches related to..." contiene un <h2> e finiva per essere trattato
-      // come un risultato (pulsanti di voto e badge di pertinenza su una
-      // ricerca correlata). DuckDuckGo espone selettori precisi: bastano quelli.
+      // ATTENZIONE ai selettori generici qui. Sul sito moderno DuckDuckGo
+      // riusa la vecchia classe .result__a per le chip di "Searches related
+      // to...": non e' un risultato, ma veniva agganciata come tale (pulsanti
+      // di voto e badge di pertinenza su una ricerca correlata). Le classi
+      // legacy vanno quindi limitate al layout classico (html.duckduckgo.com),
+      // mentre sul sito React ci si ancora ad article[data-testid='result'].
+      // Effetto collaterale utile: anche gli annunci restano fuori, perche'
+      // non sono dentro un <article data-testid="result">.
       titleSel: [
-        "a[data-testid='result-title-a']", "h2 a[data-testid='result-title-a']",
-        "article[data-testid='result'] h2 a", "a.result__a",
-        ".result__title a"
+        "article[data-testid='result'] h2 a",
+        ".result a.result__a",
+        ".result .result__title a"
       ].join(", "),
       snippetSel: "[data-result='snippet'], [data-testid='result-snippet'], .result__snippet",
       adSelectors: [
