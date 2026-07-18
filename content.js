@@ -107,10 +107,14 @@
         "ol.react-results--main", "section[data-testid='mainline']",
         "#links", "#web_content_wrapper", ".results", "#react-layout", "main"
       ],
+      // NB: niente fallback generici "h2" / "h3 a" qui. Il riquadro
+      // "Searches related to..." contiene un <h2> e finiva per essere trattato
+      // come un risultato (pulsanti di voto e badge di pertinenza su una
+      // ricerca correlata). DuckDuckGo espone selettori precisi: bastano quelli.
       titleSel: [
         "a[data-testid='result-title-a']", "h2 a[data-testid='result-title-a']",
         "article[data-testid='result'] h2 a", "a.result__a",
-        ".result__title a", "h2 a", "h2", "h3 a"
+        ".result__title a"
       ].join(", "),
       snippetSel: "[data-result='snippet'], [data-testid='result-snippet'], .result__snippet",
       adSelectors: [
