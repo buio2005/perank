@@ -1,0 +1,26 @@
+# Sistema
+.DS_Store
+.fuse_hidden*
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build / pacchetti per gli store
+*.zip
+*.xpi
+*.crx
+*.pem
+build/
+dist/
+
+# Node (se in futuro aggiungiamo tooling)
+node_modules/
+npm-debug.log*
+
+# Appunti di lavoro interni (non fanno parte del prodotto)
+# Rimuovi queste righe se vuoi versionarli anche tu
+STATO_PROGETTO.md

@@ -1,0 +1,256 @@
+{
+  "extName": {
+    "message": "PeRank - search results by relevance, not ads"
+  },
+  "extShortName": {
+    "message": "PeRank"
+  },
+  "extDesc": {
+    "message": "Reverses and re-ranks search results by relevance, hides sponsored ones and helps you dig past page one. Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo."
+  },
+  "modeOriginal": {
+    "message": "Original"
+  },
+  "modeInvert": {
+    "message": "Reverse"
+  },
+  "modeRelevance": {
+    "message": "Relevance"
+  },
+  "modeDescOriginal": {
+    "message": "You are seeing the original order from $ENGINE$.",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "modeDescInvert": {
+    "message": "You are seeing REVERSED results: the ones usually buried at the bottom come first."
+  },
+  "modeDescRelevance": {
+    "message": "You are seeing results ranked by RELEVANCE: the badge shows a score, hover it for the criteria."
+  },
+  "modeTipOriginal": {
+    "message": "The order as the search engine shows it"
+  },
+  "modeTipInvert": {
+    "message": "Flips the order: last results first"
+  },
+  "modeTipRelevance": {
+    "message": "Re-ranks by how well each result matches your search words"
+  },
+  "barTitleAttr": {
+    "message": "Re-ranks results and hides sponsored ones · $ENGINE$",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "infoResults": {
+    "message": "$COUNT$ results · $ADS$ ads removed",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "ads": {
+        "content": "$2"
+      }
+    }
+  },
+  "deepLoadMore": {
+    "message": "Load more ↓"
+  },
+  "deepMoreResults": {
+    "message": "More results ↗"
+  },
+  "deepLoading": {
+    "message": "Loading..."
+  },
+  "deepBtnTitle": {
+    "message": "Load more results from deeper pages and re-rank them"
+  },
+  "deepInfo": {
+    "message": "+$COUNT$ deeper",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "msgNoMore": {
+    "message": "no more results"
+  },
+  "msgNextNotFound": {
+    "message": "next page not found"
+  },
+  "msgLoadError": {
+    "message": "loading error"
+  },
+  "msgPaginationNotFound": {
+    "message": "pagination not found"
+  },
+  "msgNotAvailable": {
+    "message": "not available"
+  },
+  "badgeLabel": {
+    "message": "relevance $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1"
+      }
+    }
+  },
+  "badgeTip": {
+    "message": "Relevance score — how it is calculated:\n+3 if a searched word is in the title, +2 if in the URL, +1 if in the text.\n+5 if the title contains ALL the searched words.\n+4 if the title contains the exact phrase.\nBonus for authentic sources (forums, Wikipedia, GitHub, .org/.edu/.gov).\nPenalty for heavily commercial domains."
+  },
+  "deepSecHead": {
+    "message": "Deeper results · PeRank ($COUNT$)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "deepNoteTitle": {
+    "message": "🔍 Want to dig deeper?"
+  },
+  "deepNoteBody": {
+    "message": "Some search engines show few results per page and tend to put sponsored or heavily optimised content on top. You can run the <em>same query</em> on an open search engine and see results from deeper down, reversed and without sponsors."
+  },
+  "deepNoteCta": {
+    "message": "Try the deep search"
+  },
+  "deepNoteFree": {
+    "message": "· You are free to go back to $ENGINE$ whenever you want.",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "deepNoteEngines": {
+    "message": "Deep search via <strong>Brave Search</strong>, <strong>DuckDuckGo</strong> or your own <strong>SearXNG</strong> instance · <em>configurable in settings</em>"
+  },
+  "actUpTitle": {
+    "message": "Promote $HOST$: its results move up in the score",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "actDownTitle": {
+    "message": "Demote $HOST$: its results move down in the score",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "actGemTitle": {
+    "message": "Save / remove this result from your gems"
+  },
+  "popupSubtitle": {
+    "message": "Relevance instead of advertising: reverses, re-ranks and cleans up your results."
+  },
+  "popupDefaultOrder": {
+    "message": "Default order"
+  },
+  "popupDeepEngine": {
+    "message": "Search engine for deep search"
+  },
+  "optDdg": {
+    "message": "DuckDuckGo (no setup needed)"
+  },
+  "optBrave": {
+    "message": "Brave Search"
+  },
+  "optSearxng": {
+    "message": "SearXNG (your instance)"
+  },
+  "popupSearxngLabel": {
+    "message": "SearXNG instance address"
+  },
+  "popupIgnoreStopwords": {
+    "message": "Ignore common words (of, the, a...) in the score"
+  },
+  "popupBlacklistLabel": {
+    "message": "Domains to hide (blacklist)"
+  },
+  "popupBlacklistHint": {
+    "message": "One domain per line. These results are always hidden."
+  },
+  "popupWhitelistLabel": {
+    "message": "Preferred domains (whitelist)"
+  },
+  "popupWhitelistHint": {
+    "message": "One domain per line. They get priority in the relevance score."
+  },
+  "popupVotesTitle": {
+    "message": "Domain votes"
+  },
+  "popupResetAll": {
+    "message": "Reset all"
+  },
+  "popupPromoted": {
+    "message": "👍 Promoted"
+  },
+  "popupDemoted": {
+    "message": "👎 Demoted"
+  },
+  "popupVotesHint": {
+    "message": "Use 👍 / 👎 next to the results. The ✕ removes the vote for that single site."
+  },
+  "popupGemsTitle": {
+    "message": "⭐ Saved gems"
+  },
+  "popupClear": {
+    "message": "Clear"
+  },
+  "popupNoPromoted": {
+    "message": "No promoted sites."
+  },
+  "popupNoDemoted": {
+    "message": "No demoted sites."
+  },
+  "popupNoGems": {
+    "message": "No gems saved yet. Use ⭐ next to a result."
+  },
+  "popupEnginesList": {
+    "message": "Supported engines: Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo."
+  },
+  "popupSaved": {
+    "message": "Saved ✓ (reload the results page)"
+  },
+  "popupVoteRemoved": {
+    "message": "Vote removed (reload the results page)"
+  },
+  "popupGemRemoved": {
+    "message": "Gem removed"
+  },
+  "popupVotesReset": {
+    "message": "Votes reset"
+  },
+  "popupGemsCleared": {
+    "message": "Gems cleared"
+  },
+  "popupRemoveTitle": {
+    "message": "Remove"
+  },
+  "popupRemoveVoteTitle": {
+    "message": "Remove the vote for $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupLanguage": {
+    "message": "Language"
+  },
+  "langAuto": {
+    "message": "Automatic (browser language)"
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "extName": {
+    "message": "PeRank - risultati per pertinenza, senza sponsor"
+  },
+  "extShortName": {
+    "message": "PeRank"
+  },
+  "extDesc": {
+    "message": "Inverte e riordina per pertinenza i risultati di ricerca, rimuove gli sponsor e ti fa scavare oltre la prima pagina. Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo."
+  },
+  "modeOriginal": {
+    "message": "Originale"
+  },
+  "modeInvert": {
+    "message": "Inverti"
+  },
+  "modeRelevance": {
+    "message": "Pertinenza"
+  },
+  "modeDescOriginal": {
+    "message": "Stai vedendo l'ordine originale di $ENGINE$.",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "modeDescInvert": {
+    "message": "Stai vedendo i risultati INVERTITI: prima quelli che di solito finiscono in fondo."
+  },
+  "modeDescRelevance": {
+    "message": "Stai vedendo i risultati ordinati per PERTINENZA: il badge mostra un punteggio, passaci sopra il mouse per i criteri."
+  },
+  "modeTipOriginal": {
+    "message": "Ordine così come lo mostra il motore"
+  },
+  "modeTipInvert": {
+    "message": "Capovolge l'ordine: prima gli ultimi risultati"
+  },
+  "modeTipRelevance": {
+    "message": "Riordina in base a quanto ogni risultato corrisponde alle parole cercate"
+  },
+  "barTitleAttr": {
+    "message": "Riordina i risultati e nasconde gli sponsor · $ENGINE$",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "infoResults": {
+    "message": "$COUNT$ risultati · $ADS$ annunci rimossi",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "ads": {
+        "content": "$2"
+      }
+    }
+  },
+  "deepLoadMore": {
+    "message": "Carica altri ↓"
+  },
+  "deepMoreResults": {
+    "message": "Altri risultati ↗"
+  },
+  "deepLoading": {
+    "message": "Carico..."
+  },
+  "deepBtnTitle": {
+    "message": "Carica altri risultati più in profondità e riordina l'insieme"
+  },
+  "deepInfo": {
+    "message": "+$COUNT$ profondi",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "msgNoMore": {
+    "message": "nessun altro risultato"
+  },
+  "msgNextNotFound": {
+    "message": "pagina successiva non trovata"
+  },
+  "msgLoadError": {
+    "message": "errore nel caricamento"
+  },
+  "msgPaginationNotFound": {
+    "message": "paginazione non trovata"
+  },
+  "msgNotAvailable": {
+    "message": "non disponibile"
+  },
+  "badgeLabel": {
+    "message": "pertinenza $SCORE$",
+    "placeholders": {
+      "score": {
+        "content": "$1"
+      }
+    }
+  },
+  "badgeTip": {
+    "message": "Punteggio di pertinenza — come si calcola:\n+3 se una parola cercata è nel titolo, +2 se è nell'URL, +1 se è nel testo.\n+5 se il titolo contiene TUTTE le parole cercate.\n+4 se il titolo contiene la frase esatta.\nBonus alle fonti autentiche (forum, Wikipedia, GitHub, .org/.edu/.gov).\nPenalità ai domini molto commerciali."
+  },
+  "deepSecHead": {
+    "message": "Risultati più profondi · PeRank ($COUNT$)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "deepNoteTitle": {
+    "message": "🔍 Vuoi scavare più a fondo?"
+  },
+  "deepNoteBody": {
+    "message": "Alcuni motori mostrano pochi risultati per pagina e tendono a mettere in alto contenuti sponsorizzati o molto ottimizzati. È possibile cercare la <em>stessa query</em> su un motore aperto e mostrare i risultati più in profondità, in ordine invertito e senza sponsor."
+  },
+  "deepNoteCta": {
+    "message": "Prova la ricerca profonda"
+  },
+  "deepNoteFree": {
+    "message": "· Resti libero di tornare a $ENGINE$ quando vuoi.",
+    "placeholders": {
+      "engine": {
+        "content": "$1"
+      }
+    }
+  },
+  "deepNoteEngines": {
+    "message": "Ricerca profonda tramite <strong>Brave Search</strong>, <strong>DuckDuckGo</strong> o una tua istanza <strong>SearXNG</strong> · <em>modificabile nelle impostazioni</em>"
+  },
+  "actUpTitle": {
+    "message": "Promuovi $HOST$: i suoi risultati salgono nel punteggio",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "actDownTitle": {
+    "message": "Declassa $HOST$: i suoi risultati scendono nel punteggio",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "actGemTitle": {
+    "message": "Salva / rimuovi questo risultato tra le gemme"
+  },
+  "popupSubtitle": {
+    "message": "Pertinenza al posto della pubblicità: inverte, riordina e ripulisce i risultati."
+  },
+  "popupDefaultOrder": {
+    "message": "Ordinamento predefinito"
+  },
+  "popupDeepEngine": {
+    "message": "Motore per la ricerca profonda"
+  },
+  "optDdg": {
+    "message": "DuckDuckGo (nessuna configurazione)"
+  },
+  "optBrave": {
+    "message": "Brave Search"
+  },
+  "optSearxng": {
+    "message": "SearXNG (tua istanza)"
+  },
+  "popupSearxngLabel": {
+    "message": "Indirizzo istanza SearXNG"
+  },
+  "popupIgnoreStopwords": {
+    "message": "Ignora parole comuni (di, il, the...) nel punteggio"
+  },
+  "popupBlacklistLabel": {
+    "message": "Domini da nascondere (blacklist)"
+  },
+  "popupBlacklistHint": {
+    "message": "Un dominio per riga. Questi risultati vengono sempre nascosti."
+  },
+  "popupWhitelistLabel": {
+    "message": "Domini preferiti (whitelist)"
+  },
+  "popupWhitelistHint": {
+    "message": "Un dominio per riga. Ricevono priorità nel punteggio di pertinenza."
+  },
+  "popupVotesTitle": {
+    "message": "Voti sui domini"
+  },
+  "popupResetAll": {
+    "message": "Azzera tutto"
+  },
+  "popupPromoted": {
+    "message": "👍 Promossi"
+  },
+  "popupDemoted": {
+    "message": "👎 Declassati"
+  },
+  "popupVotesHint": {
+    "message": "Usa 👍 / 👎 accanto ai risultati. La ✕ rimuove il voto di quel singolo sito."
+  },
+  "popupGemsTitle": {
+    "message": "⭐ Gemme salvate"
+  },
+  "popupClear": {
+    "message": "Svuota"
+  },
+  "popupNoPromoted": {
+    "message": "Nessun sito promosso."
+  },
+  "popupNoDemoted": {
+    "message": "Nessun sito declassato."
+  },
+  "popupNoGems": {
+    "message": "Nessuna gemma salvata. Usa ⭐ accanto a un risultato."
+  },
+  "popupEnginesList": {
+    "message": "Motori supportati: Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo."
+  },
+  "popupSaved": {
+    "message": "Salvato ✓ (ricarica la pagina dei risultati)"
+  },
+  "popupVoteRemoved": {
+    "message": "Voto rimosso (ricarica la pagina dei risultati)"
+  },
+  "popupGemRemoved": {
+    "message": "Gemma rimossa"
+  },
+  "popupVotesReset": {
+    "message": "Voti azzerati"
+  },
+  "popupGemsCleared": {
+    "message": "Gemme svuotate"
+  },
+  "popupRemoveTitle": {
+    "message": "Rimuovi"
+  },
+  "popupRemoveVoteTitle": {
+    "message": "Rimuovi il voto per $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupLanguage": {
+    "message": "Lingua"
+  },
+  "langAuto": {
+    "message": "Automatica (lingua del browser)"
+  }
+}

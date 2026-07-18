@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="PeRank">
+  <circle cx="64" cy="64" r="60" fill="#2B3A67"/>
+  <rect x="42" y="50" width="12" height="44" rx="6" fill="#FFFFFF"/>
+  <polygon points="48,30 31,54 65,54" fill="#FFFFFF"/>
+  <rect x="74" y="34" width="12" height="44" rx="6" fill="#FF4D6D"/>
+  <polygon points="80,98 63,74 97,74" fill="#FF4D6D"/>
+</svg>

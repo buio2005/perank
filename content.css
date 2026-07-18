@@ -1,0 +1,199 @@
+/* PeRank — stile UI iniettata */
+
+.rvs-bar {
+  margin: 10px 0 16px;
+  padding: 8px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  background: #f8f9fa;
+  font-family: arial, sans-serif;
+}
+.rvs-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rvs-desc {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #202124;
+  font-weight: 600;
+}
+.rvs-title {
+  font-weight: 700;
+  color: #1a73e8;
+  margin-right: 4px;
+}
+.rvs-btn {
+  border: 1px solid #dadce0;
+  background: #fff;
+  color: #202124;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.rvs-btn:hover { background: #f1f3f4; }
+.rvs-active {
+  background: #1a73e8;
+  border-color: #1a73e8;
+  color: #fff;
+  font-weight: 700;
+}
+.rvs-active::before {
+  content: "✓ ";
+}
+.rvs-info {
+  margin-left: auto;
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.rvs-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  font-size: 11px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.rvs-note {
+  margin: 22px 0 30px;
+  padding: 16px 18px;
+  border: 1px solid #dadce0;
+  border-left: 4px solid #1a73e8;
+  border-radius: 10px;
+  background: #fbfcff;
+  max-width: 640px;
+  font-family: arial, sans-serif;
+}
+.rvs-note-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #202124;
+  margin-bottom: 6px;
+}
+.rvs-note-body {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #3c4043;
+}
+.rvs-note-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.rvs-cta {
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.rvs-cta:hover { background: #1765cc; }
+.rvs-note-free {
+  font-size: 12px;
+  color: #5f6368;
+  font-style: italic;
+}
+.rvs-note-engines {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.rvs-deep {
+  background: #188038;
+  color: #fff;
+  border-color: #188038;
+  font-weight: 700;
+}
+.rvs-deep:hover { background: #146c2e; border-color: #146c2e; }
+.rvs-deep:disabled { opacity: .6; cursor: default; }
+
+
+/* Sezione "Risultati piu profondi" (fase 2) */
+.rvs-deep-sec {
+  margin: 18px 0 26px;
+  padding: 14px 16px;
+  border: 1px solid #dadce0;
+  border-top: 3px solid #188038;
+  border-radius: 10px;
+  background: #fbfffc;
+  max-width: 680px;
+  font-family: arial, sans-serif;
+}
+.rvs-deep-head {
+  font-size: 13px;
+  font-weight: 700;
+  color: #188038;
+  margin-bottom: 12px;
+}
+.rvs-deep-row { margin: 0 0 16px; }
+.rvs-deep-title {
+  font-size: 16px;
+  color: #1a0dab;
+  text-decoration: none;
+  line-height: 1.3;
+}
+.rvs-deep-title:hover { text-decoration: underline; }
+.rvs-deep-url { font-size: 12px; color: #0b8043; margin: 2px 0; word-break: break-all; }
+.rvs-deep-snip { font-size: 13px; color: #3c4043; line-height: 1.4; }
+
+
+/* Azioni per risultato: 👍 👎 ⭐ */
+.rvs-acts {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0 2px;
+  align-items: center;
+  order: 9999;   /* nei layout flex (es. Google) resta sempre in fondo */
+  width: 100%;
+}
+.rvs-act {
+  border: 1px solid #dadce0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1px 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .15s, background .15s, border-color .15s;
+}
+.rvs-act:hover { opacity: 1; background: #f1f3f4; }
+.rvs-act.rvs-on {
+  opacity: 1;
+  background: #e8f0fe;
+  border-color: #1a73e8;
+}
+
+/* Dark mode di Google */
+@media (prefers-color-scheme: dark) {
+  .rvs-bar, .rvs-note { background: #202124; border-color: #3c4043; }
+  .rvs-btn { background: #303134; color: #e8eaed; border-color: #5f6368; }
+  .rvs-btn:hover { background: #3c4043; }
+  .rvs-note-title { color: #e8eaed; }
+  .rvs-note-body { color: #bdc1c6; }
+  .rvs-desc { color: #e8eaed; }
+  .rvs-deep { background: #188038; color: #fff; border-color: #188038; }
+  .rvs-deep:hover { background: #146c2e; }
+  .rvs-deep-sec { background: #202124; border-color: #3c4043; border-top-color: #188038; }
+  .rvs-deep-title { color: #8ab4f8; }
+  .rvs-deep-snip { color: #bdc1c6; }
+  .rvs-deep-url { color: #81c995; }
+  .rvs-act { background: #303134; border-color: #5f6368; color: #e8eaed; }
+  .rvs-act:hover { background: #3c4043; }
+  .rvs-act.rvs-on { background: #1f3a5f; border-color: #8ab4f8; }
+}

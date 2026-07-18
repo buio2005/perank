@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 440" width="512" height="440" role="img" aria-label="PeRank">
+  <rect x="140" y="230" width="40" height="150" rx="20" fill="#FF4D6D"/>
+  <rect x="204" y="145" width="40" height="235" rx="20" fill="#2B3A67"/>
+  <rect x="268" y="90"  width="40" height="290" rx="20" fill="#FF4D6D"/>
+  <rect x="332" y="175" width="40" height="205" rx="20" fill="#2B3A67"/>
+  <g transform="translate(161,167) scale(1.484375)">
+    <circle cx="64" cy="64" r="60" fill="#2B3A67"/>
+    <rect x="42" y="50" width="12" height="44" rx="6" fill="#FFFFFF"/>
+    <polygon points="48,30 31,54 65,54" fill="#FFFFFF"/>
+    <rect x="74" y="34" width="12" height="44" rx="6" fill="#FF4D6D"/>
+    <polygon points="80,98 63,74 97,74" fill="#FF4D6D"/>
+  </g>
+</svg>
