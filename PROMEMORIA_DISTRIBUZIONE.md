@@ -159,3 +159,45 @@ Cross-branding: header con "parte della suite TivuStream" + link al sito padre; 
 agli altri strumenti della suite. Il traffico si alimenta nei due sensi.
 
 ORDINE DI LAVORO: GitHub repo -> hero page in docs/ -> GitHub Pages -> CNAME. Non prima della repo.
+
+## 7. HERO PAGE: FATTA — cosa resta da fare (passi manuali)
+File creati in `docs/`:
+- `index.html`  — hero page bilingue EN/IT (selettore in alto a destra, sceglie da solo la lingua
+  del browser e ricorda la scelta). Nessuna dipendenza esterna: niente font o librerie da CDN,
+  coerente con un progetto privacy-first. Dark mode automatica.
+- `privacy.html`— informativa privacy bilingue. **Questo URL serve al Chrome Web Store.**
+- `CNAME`       — contiene `perank.tivustream.com`
+
+### A) Attivare GitHub Pages
+Su github.com/buio2005/perank -> **Settings** -> **Pages**:
+- Source: **Deploy from a branch**
+- Branch: **main**, cartella **/docs** -> Save
+- Attendere 1-2 minuti: il sito esce su `https://buio2005.github.io/perank/`
+
+### B) DNS su Cloudflare (tivustream.com)
+DECISO: la pagina e' ospitata da **GitHub Pages**, il sottodominio e' solo l'indirizzo pubblico.
+NON e' un redirect: i visitatori vedono sempre e solo perank.tivustream.com.
+
+1. **Eliminare** l'eventuale record **A** `perank` che punta al VPS (non devono coesistere).
+2. Creare un record **CNAME**:
+   - Nome: `perank`
+   - Destinazione: `buio2005.github.io`
+   - Proxy status: **DNS only (nuvoletta GRIGIA)** <- IMPORTANTE
+3. Perche' grigia: con il proxy Cloudflare attivo (arancione) GitHub non riesce a completare la
+   validazione e non emette il certificato -> HTTPS non si attiva mai.
+   Una volta che HTTPS funziona si puo' eventualmente riattivare il proxy, ma in Cloudflare la
+   modalita' SSL/TLS deve essere **Full (strict)** (GitHub Pages ha un certificato valido).
+4. Sul VPS non serve nulla: niente vhost, niente certificato per il sottodominio.
+   Se era stato creato un sottodominio nel pannello VPS, si puo' rimuovere per evitare confusione.
+
+NOTA sull'errore 526 incontrato: Cloudflare raggiungeva il VPS ma il server non aveva un
+certificato valido per il sottodominio. Passando a GitHub Pages il problema sparisce all'origine.
+
+### C) Tornare su Settings -> Pages
+- In "Custom domain" comparira' gia' `perank.tivustream.com` (lo legge dal file CNAME).
+- Quando il check DNS diventa verde, spuntare **Enforce HTTPS**.
+
+### D) Dopo che il sito e' online
+- Aggiungere l'URL nel campo **Website** della repo (ingranaggio accanto ad "About").
+- Aggiungere il link al sito nei due README.
+- URL privacy policy per il Chrome Web Store: `https://perank.tivustream.com/privacy.html`

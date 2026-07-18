@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PeRank — relevance instead of advertising</title>
+<meta name="description" content="Browser extension that reverses and re-ranks search results by relevance, hides sponsored ones and helps you dig past page one. Free, open source, no tracking.">
+<link rel="icon" href="../icons/icon48.png">
+<style>
+  :root{
+    --navy:#2B3A67; --coral:#FF4D6D; --ink:#161a24; --muted:#5b6478;
+    --bg:#ffffff; --card:#f7f8fb; --line:#e4e7ef; --max:920px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --ink:#e8ebf2; --muted:#a2abc0; --bg:#0f1420; --card:#171d2c; --line:#28304200; --line:#283042; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  a{color:var(--navy);text-decoration:none}
+  @media (prefers-color-scheme:dark){a{color:#8fb0ff}}
+  a:hover{text-decoration:underline}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  .bar{display:flex;align-items:center;gap:14px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:18px;color:var(--ink)}
+  .brand svg{display:block}
+  .suite{font-size:12px;color:var(--muted)}
+  nav{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:14px;flex-wrap:wrap}
+  .langbtn{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;
+    padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+  .langbtn:hover{color:var(--ink)}
+  h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:0 0 14px;letter-spacing:-.02em}
+  h2{font-size:24px;margin:0 0 12px;letter-spacing:-.01em}
+  h3{font-size:17px;margin:0 0 6px}
+  p{margin:0 0 14px}
+  .lead{font-size:19px;color:var(--muted);max-width:640px}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .hero{padding:64px 0 56px;text-align:center}
+  .hero .lead{margin-left:auto;margin-right:auto}
+  .hero-logo{margin-bottom:22px}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-block;padding:11px 22px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--navy)}
+  .btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .btn-primary:hover{background:#222e53;text-decoration:none}
+  .btn-ghost{color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy);text-decoration:none}
+  .soon{font-size:12px;color:var(--muted);margin-top:12px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  table{width:100%;border-collapse:collapse;font-size:15px;margin:6px 0 16px}
+  th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .mock{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:22px auto 0;max-width:560px;text-align:left}
+  .mock-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .mock-name{color:var(--navy);font-weight:700;font-size:14px}
+  @media (prefers-color-scheme:dark){.mock-name{color:#8fb0ff}}
+  .pill{border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:13px;background:var(--bg)}
+  .pill.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+  .pill.deep{background:#188038;border-color:#188038;color:#fff;font-weight:600}
+  .mock-desc{font-size:13px;font-weight:600;margin-top:9px}
+  .privacy{background:var(--card);border-radius:12px;padding:26px;border:1px solid var(--line)}
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";color:var(--coral);font-weight:700}
+  details[open] summary::before{content:"– "}
+  details p{margin:10px 0 0;color:var(--muted);font-size:15px}
+  footer{padding:36px 0 48px;font-size:14px;color:var(--muted)}
+  footer a{color:var(--muted);text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <span class="brand">
+      <svg width="26" height="26" viewBox="0 0 128 128" aria-hidden="true">
+        <circle cx="64" cy="64" r="60" fill="#2B3A67"/>
+        <rect x="42" y="50" width="12" height="44" rx="6" fill="#fff"/>
+        <polygon points="48,30 31,54 65,54" fill="#fff"/>
+        <rect x="74" y="34" width="12" height="44" rx="6" fill="#FF4D6D"/>
+        <polygon points="80,98 63,74 97,74" fill="#FF4D6D"/>
+      </svg>
+      PeRank
+    </span>
+    <span class="suite" data-k="suiteTag"></span>
+    <nav>
+      <a href="https://github.com/buio2005/perank">GitHub</a>
+      <a href="privacy.html" data-k="navPrivacy"></a>
+      <button class="langbtn" id="lang" type="button"></button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="hero-logo">
+    <svg width="96" height="96" viewBox="0 0 128 128" aria-hidden="true">
+      <circle cx="64" cy="64" r="60" fill="#2B3A67"/>
+      <rect x="42" y="50" width="12" height="44" rx="6" fill="#fff"/>
+      <polygon points="48,30 31,54 65,54" fill="#fff"/>
+      <rect x="74" y="34" width="12" height="44" rx="6" fill="#FF4D6D"/>
+      <polygon points="80,98 63,74 97,74" fill="#FF4D6D"/>
+    </svg>
+  </div>
+  <h1 data-k="heroTitle"></h1>
+  <p class="lead" data-k="heroLead"></p>
+  <div class="cta">
+    <a class="btn btn-primary" href="https://github.com/buio2005/perank" data-k="ctaGithub"></a>
+    <a class="btn btn-ghost" href="#how" data-k="ctaHow"></a>
+  </div>
+  <p class="soon" data-k="ctaSoon"></p>
+
+  <div class="mock">
+    <div class="mock-row">
+      <span class="mock-name">PeRank</span>
+      <span class="pill" data-k="mockOriginal"></span>
+      <span class="pill on" data-k="mockReverse"></span>
+      <span class="pill" data-k="mockRelevance"></span>
+      <span class="pill deep" data-k="mockDeep"></span>
+    </div>
+    <div class="mock-desc" data-k="mockDesc"></div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <h2 data-k="whyTitle"></h2>
+    <p data-k="whyP1"></p>
+    <p data-k="whyP2"></p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2 data-k="howTitle"></h2>
+    <div class="grid">
+      <div class="card"><h3 data-k="how1T"></h3><p data-k="how1P"></p></div>
+      <div class="card"><h3 data-k="how2T"></h3><p data-k="how2P"></p></div>
+      <div class="card"><h3 data-k="how3T"></h3><p data-k="how3P"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="engines">
+  <div class="wrap">
+    <h2 data-k="engTitle"></h2>
+    <p data-k="engP"></p>
+    <table>
+      <thead><tr><th data-k="engColA"></th><th data-k="engColB"></th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ecosia</strong></td><td data-k="engEcosia"></td></tr>
+        <tr><td><strong>Google, Bing, Yandex, Yahoo</strong></td><td data-k="engBig"></td></tr>
+        <tr><td><strong>DuckDuckGo, Brave, Startpage</strong></td><td data-k="engNone"></td></tr>
+      </tbody>
+    </table>
+    <p data-k="engHonest"></p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 data-k="featTitle"></h2>
+    <div class="grid">
+      <div class="card"><h3 data-k="feat1T"></h3><p data-k="feat1P"></p></div>
+      <div class="card"><h3 data-k="feat2T"></h3><p data-k="feat2P"></p></div>
+      <div class="card"><h3 data-k="feat3T"></h3><p data-k="feat3P"></p></div>
+      <div class="card"><h3 data-k="feat4T"></h3><p data-k="feat4P"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <div class="privacy">
+      <h2 data-k="privTitle"></h2>
+      <p data-k="privP1"></p>
+      <p data-k="privP2"></p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2 data-k="faqTitle"></h2>
+    <details><summary data-k="faq1Q"></summary><p data-k="faq1A"></p></details>
+    <details><summary data-k="faq2Q"></summary><p data-k="faq2A"></p></details>
+    <details><summary data-k="faq3Q"></summary><p data-k="faq3A"></p></details>
+    <details><summary data-k="faq4Q"></summary><p data-k="faq4A"></p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p data-k="footL1"></p>
+    <p data-k="footL2"></p>
+  </div>
+</footer>
+
+<script>
+var T = {
+  suiteTag:{en:"part of the TivuStream suite", it:"parte della suite TivuStream"},
+  navPrivacy:{en:"Privacy", it:"Privacy"},
+  heroTitle:{en:"Relevance instead of advertising.", it:"Pertinenza al posto della pubblicità."},
+  heroLead:{en:"PeRank reverses and re-ranks the results of eight search engines, hides sponsored ones and helps you dig past the first page — where the genuinely useful pages often are.",
+            it:"PeRank inverte e riordina i risultati di otto motori di ricerca, nasconde gli sponsor e ti aiuta a scavare oltre la prima pagina — dove spesso stanno le pagine davvero utili."},
+  ctaGithub:{en:"View on GitHub", it:"Guarda su GitHub"},
+  ctaHow:{en:"How it works", it:"Come funziona"},
+  ctaSoon:{en:"Free and open source (GPL-3.0). Store listings coming soon.",
+           it:"Gratuito e open source (GPL-3.0). Presto sugli store."},
+  mockOriginal:{en:"Original", it:"Originale"},
+  mockReverse:{en:"✓ Reverse", it:"✓ Inverti"},
+  mockRelevance:{en:"Relevance", it:"Pertinenza"},
+  mockDeep:{en:"Load more ↓", it:"Carica altri ↓"},
+  mockDesc:{en:"You are seeing REVERSED results: the ones usually buried at the bottom come first.",
+            it:"Stai vedendo i risultati INVERTITI: prima quelli che di solito finiscono in fondo."},
+
+  whyTitle:{en:"The first page is not the best page", it:"La prima pagina non è la pagina migliore"},
+  whyP1:{en:"Search engines put sponsored results and heavily SEO-optimised pages at the top. What ranks first is often what is best at ranking — not what best answers your question. The honest review, the forum thread with the real test, the personal blog with hands-on experience: those tend to sit on page five, or ten.",
+         it:"I motori mettono in alto risultati sponsorizzati e pagine ottimizzate per il posizionamento. Ciò che sta in cima è spesso ciò che è più bravo a posizionarsi — non ciò che risponde meglio alla tua domanda. La recensione onesta, il thread del forum con la prova sul campo, il blog personale con l'esperienza diretta: quelli finiscono a pagina cinque, o dieci."},
+  whyP2:{en:"PeRank does not replace the search engine. It works on the results you already have in front of you, and lets you look at them the other way around.",
+         it:"PeRank non sostituisce il motore di ricerca. Lavora sui risultati che hai già davanti, e ti permette di guardarli dal verso opposto."},
+
+  howTitle:{en:"Three ways to look at your results", it:"Tre modi di guardare i risultati"},
+  how1T:{en:"Reverse", it:"Inverti"},
+  how1P:{en:"Flips the order: the last results come first. The quickest way to see what the ranking was hiding from you.",
+         it:"Capovolge l'ordine: gli ultimi risultati arrivano per primi. Il modo più rapido per vedere cosa il ranking ti stava nascondendo."},
+  how2T:{en:"Relevance", it:"Pertinenza"},
+  how2P:{en:"Re-ranks by how well each result actually matches your words — title, URL, snippet — with a visible score and a bonus for authentic sources like forums and wikis.",
+         it:"Riordina in base a quanto ogni risultato corrisponde davvero alle tue parole — titolo, URL, testo — con un punteggio visibile e un bonus alle fonti autentiche come forum e wiki."},
+  how3T:{en:"No sponsors", it:"Niente sponsor"},
+  how3P:{en:"Ads and sponsored blocks are removed from the page in every mode, on every supported engine.",
+         it:"Annunci e blocchi sponsorizzati vengono rimossi dalla pagina in ogni modalità, su tutti i motori supportati."},
+
+  engTitle:{en:"Eight engines, and an honest note", it:"Otto motori, e una nota onesta"},
+  engP:{en:"Reversing, relevance re-ranking and ad removal work on <strong>all eight</strong> supported engines: Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo. Deep search — going beyond page one — depends on what each engine actually allows:",
+        it:"Inversione, riordino per pertinenza e rimozione degli sponsor funzionano su <strong>tutti e otto</strong> i motori supportati: Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo. La ricerca profonda — andare oltre la prima pagina — dipende da cosa ciascun motore permette davvero:"},
+  engColA:{en:"Engine", it:"Motore"},
+  engColB:{en:"Deep search", it:"Ricerca profonda"},
+  engEcosia:{en:"<strong>In page.</strong> One click appends results from the following pages, cleaned and re-ranked.",
+             it:"<strong>In pagina.</strong> Un click aggiunge i risultati delle pagine successive, puliti e riordinati."},
+  engBig:{en:"<strong>New tab.</strong> A discreet note offers to run the same query on an open engine, where results are often very different.",
+          it:"<strong>Nuova scheda.</strong> Una nota discreta propone di rilanciare la stessa ricerca su un motore aperto, dove i risultati sono spesso molto diversi."},
+  engNone:{en:"<strong>Not available.</strong> No button is shown.",
+           it:"<strong>Non disponibile.</strong> Nessun pulsante viene mostrato."},
+  engHonest:{en:"Why nothing on those three? They do not expose a reliable way to load further pages. We could force it with fragile tricks, but we would rather show no button at all than one that fails to keep its promise.",
+             it:"Perché su quei tre niente? Non espongono un modo affidabile per caricare altre pagine. Potremmo forzare la mano con espedienti fragili, ma preferiamo non mostrare alcun pulsante piuttosto che uno che non mantiene la promessa."},
+
+  featTitle:{en:"It learns what you like", it:"Impara cosa ti piace"},
+  feat1T:{en:"👍 / 👎 on domains", it:"👍 / 👎 sui domini"},
+  feat1P:{en:"Vote a site, not a single link: every result from that domain moves up or down in the score, from then on.",
+          it:"Vota un sito, non il singolo link: da quel momento tutti i risultati di quel dominio salgono o scendono nel punteggio."},
+  feat2T:{en:"⭐ Gems", it:"⭐ Gemme"},
+  feat2P:{en:"Save the good resources you fished out from deeper pages. They stay in a personal archive inside the extension.",
+          it:"Salva le risorse buone pescate in profondità. Restano in un archivio personale dentro l'estensione."},
+  feat3T:{en:"Block and boost lists", it:"Liste di blocco e priorità"},
+  feat3P:{en:"Hide certain domains for good, or give your trusted ones permanent priority in the ranking.",
+          it:"Nascondi per sempre certi domini, oppure dai priorità permanente a quelli di cui ti fidi."},
+  feat4T:{en:"English and Italian", it:"Inglese e italiano"},
+  feat4P:{en:"The interface follows your browser language, and you can force either one from the popup.",
+          it:"L'interfaccia segue la lingua del browser, e puoi forzarne una dal popup."},
+
+  privTitle:{en:"No data. None at all.", it:"Nessun dato. Proprio nessuno."},
+  privP1:{en:"PeRank has no server. Your settings, your votes and your saved gems live in your browser's local storage, on your device, and are never sent anywhere. There is no analytics, no tracking, no account.",
+          it:"PeRank non ha un server. Impostazioni, voti e gemme salvate vivono nello storage locale del browser, sul tuo dispositivo, e non vengono mai inviati da nessuna parte. Nessuna analytics, nessun tracciamento, nessun account."},
+  privP2:{en:"It also makes no requests on its own: it only reworks the results already on the page. The single network request it can make is the one you trigger yourself by clicking the deep search button. The code is open, and you can read all of it.",
+          it:"Non fa nemmeno richieste per conto suo: rielabora solo i risultati già presenti nella pagina. L'unica richiesta di rete possibile è quella che avvii tu cliccando il pulsante della ricerca profonda. Il codice è aperto, e puoi leggerlo tutto."},
+
+  faqTitle:{en:"Questions", it:"Domande"},
+  faq1Q:{en:"Does it break the search engines' terms of service?", it:"Viola i termini d'uso dei motori di ricerca?"},
+  faq1A:{en:"No. PeRank only rearranges what the engine already sent to your browser — the same thing a custom stylesheet or a reader mode does. It performs no scraping and no automated querying.",
+         it:"No. PeRank riordina soltanto ciò che il motore ha già inviato al tuo browser — la stessa cosa che fa un foglio di stile personalizzato o una modalità lettura. Non fa scraping né interrogazioni automatiche."},
+  faq2Q:{en:"Will it slow down my searches?", it:"Rallenta le ricerche?"},
+  faq2A:{en:"No. The work happens locally on a page that has already loaded, and it is a matter of milliseconds.",
+         it:"No. Il lavoro avviene in locale su una pagina già caricata, ed è questione di millisecondi."},
+  faq3Q:{en:"What happens if a search engine changes its layout?", it:"Cosa succede se un motore cambia layout?"},
+  faq3A:{en:"That single engine may stop being re-ranked until the selectors are updated. Everything is isolated per engine, so a fix touches one small block of configuration — and you can open an issue on GitHub when you spot it.",
+         it:"Quel singolo motore può smettere di essere riordinato finché i selettori non vengono aggiornati. Tutto è isolato per motore, quindi la correzione tocca un piccolo blocco di configurazione — e puoi segnalarlo aprendo una issue su GitHub."},
+  faq4Q:{en:"Is it really free?", it:"È davvero gratuito?"},
+  faq4A:{en:"Yes, and it is free software under GPL-3.0: you can use it, study it, modify it and redistribute it. There is nothing to buy and nothing to subscribe to.",
+         it:"Sì, ed è software libero con licenza GPL-3.0: puoi usarlo, studiarlo, modificarlo e ridistribuirlo. Non c'è nulla da comprare né da sottoscrivere."},
+
+  footL1:{en:'PeRank is free software under <a href="https://github.com/buio2005/perank/blob/main/LICENSE">GPL-3.0</a> · <a href="https://github.com/buio2005/perank">Source code</a> · <a href="privacy.html">Privacy</a>',
+          it:'PeRank è software libero con licenza <a href="https://github.com/buio2005/perank/blob/main/LICENSE">GPL-3.0</a> · <a href="https://github.com/buio2005/perank">Codice sorgente</a> · <a href="privacy.html">Privacy</a>'},
+  footL2:{en:'Part of <a href="https://tivustream.com">TivuStream</a>, a privacy-first toolkit.',
+          it:'Parte di <a href="https://tivustream.com">TivuStream</a>, una suite di strumenti privacy-first.'}
+};
+
+function setLang(l){
+  document.documentElement.lang = l;
+  var n = document.querySelectorAll("[data-k]");
+  for (var i=0;i<n.length;i++){
+    var e = T[n[i].getAttribute("data-k")];
+    if (e) n[i].innerHTML = e[l];
+  }
+  document.getElementById("lang").textContent = (l === "en") ? "🇮🇹 Italiano" : "🇬🇧 English";
+  try { localStorage.setItem("perank-lang", l); } catch(e){}
+}
+var saved = null;
+try { saved = localStorage.getItem("perank-lang"); } catch(e){}
+var initial = saved || ((navigator.language||"en").slice(0,2) === "it" ? "it" : "en");
+setLang(initial);
+document.getElementById("lang").addEventListener("click", function(){
+  setLang(document.documentElement.lang === "en" ? "it" : "en");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PeRank — Privacy Policy</title>
+<meta name="description" content="PeRank collects no data. No server, no analytics, no tracking: everything stays in your browser.">
+<link rel="icon" href="../icons/icon48.png">
+<style>
+  :root{--navy:#2B3A67;--coral:#FF4D6D;--ink:#161a24;--muted:#5b6478;--bg:#fff;--card:#f7f8fb;--line:#e4e7ef}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ebf2;--muted:#a2abc0;--bg:#0f1420;--card:#171d2c;--line:#283042}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  a{color:var(--navy)} @media (prefers-color-scheme:dark){a{color:#8fb0ff}}
+  header{border-bottom:1px solid var(--line);padding:12px 0}
+  .bar{display:flex;align-items:center;gap:10px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--ink);text-decoration:none}
+  nav{margin-left:auto;display:flex;gap:14px;align-items:center;font-size:14px}
+  .langbtn{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;
+    padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+  h1{font-size:32px;margin:34px 0 6px;letter-spacing:-.02em}
+  h2{font-size:20px;margin:30px 0 8px}
+  p,li{margin:0 0 12px}
+  .date{color:var(--muted);font-size:14px;margin-bottom:26px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0}
+  .box p{margin:0;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0 18px}
+  th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 0 44px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="brand" href="index.html">
+    <svg width="24" height="24" viewBox="0 0 128 128" aria-hidden="true">
+      <circle cx="64" cy="64" r="60" fill="#2B3A67"/>
+      <rect x="42" y="50" width="12" height="44" rx="6" fill="#fff"/>
+      <polygon points="48,30 31,54 65,54" fill="#fff"/>
+      <rect x="74" y="34" width="12" height="44" rx="6" fill="#FF4D6D"/>
+      <polygon points="80,98 63,74 97,74" fill="#FF4D6D"/>
+    </svg> PeRank
+  </a>
+  <nav>
+    <a href="index.html" data-k="navHome"></a>
+    <a href="https://github.com/buio2005/perank">GitHub</a>
+    <button class="langbtn" id="lang" type="button"></button>
+  </nav>
+</div></header>
+
+<div class="wrap">
+  <h1 data-k="title"></h1>
+  <p class="date" data-k="date"></p>
+
+  <div class="box"><p data-k="summary"></p></div>
+
+  <h2 data-k="h1t"></h2>
+  <p data-k="h1p"></p>
+
+  <h2 data-k="h2t"></h2>
+  <p data-k="h2p"></p>
+  <table>
+    <thead><tr><th data-k="colWhat"></th><th data-k="colWhere"></th></tr></thead>
+    <tbody>
+      <tr><td data-k="d1a"></td><td data-k="d1b"></td></tr>
+      <tr><td data-k="d2a"></td><td data-k="d2b"></td></tr>
+      <tr><td data-k="d3a"></td><td data-k="d3b"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 data-k="h3t"></h2>
+  <p data-k="h3p"></p>
+  <table>
+    <thead><tr><th data-k="colPerm"></th><th data-k="colWhy"></th></tr></thead>
+    <tbody>
+      <tr><td><code>storage</code></td><td data-k="p1"></td></tr>
+      <tr><td data-k="p2a"></td><td data-k="p2b"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 data-k="h4t"></h2>
+  <p data-k="h4p"></p>
+
+  <h2 data-k="h5t"></h2>
+  <p data-k="h5p"></p>
+
+  <h2 data-k="h6t"></h2>
+  <p data-k="h6p"></p>
+</div>
+
+<footer><div class="wrap">
+  <p data-k="foot"></p>
+</div></footer>
+
+<script>
+var T = {
+  navHome:{en:"Home", it:"Home"},
+  title:{en:"Privacy Policy", it:"Informativa sulla privacy"},
+  date:{en:"Last updated: 18 July 2026", it:"Ultimo aggiornamento: 18 luglio 2026"},
+  summary:{en:"PeRank collects no personal data, has no server and sends nothing anywhere. Everything stays in your browser, on your device.",
+           it:"PeRank non raccoglie alcun dato personale, non ha un server e non invia nulla da nessuna parte. Tutto resta nel tuo browser, sul tuo dispositivo."},
+
+  h1t:{en:"What PeRank does", it:"Cosa fa PeRank"},
+  h1p:{en:"PeRank is a browser extension that rearranges the search results already displayed on the page: it reverses their order, re-ranks them by relevance and hides sponsored blocks. It reads only the page you are already looking at, and only on the search engines listed in its manifest.",
+       it:"PeRank è un'estensione che riorganizza i risultati di ricerca già presenti nella pagina: ne inverte l'ordine, li riordina per pertinenza e nasconde i blocchi sponsorizzati. Legge soltanto la pagina che stai già guardando, e solo sui motori di ricerca elencati nel suo manifest."},
+
+  h2t:{en:"What is stored, and where", it:"Cosa viene salvato, e dove"},
+  h2p:{en:"PeRank saves your preferences using the browser's local extension storage. This data never leaves your device: it is not transmitted, not synchronised to any server of ours, and not shared with third parties.",
+       it:"PeRank salva le tue preferenze nello storage locale dell'estensione. Questi dati non lasciano mai il tuo dispositivo: non vengono trasmessi, non sono sincronizzati su alcun nostro server e non vengono condivisi con terzi."},
+  colWhat:{en:"Data", it:"Dato"},
+  colWhere:{en:"Where it lives", it:"Dove risiede"},
+  d1a:{en:"Settings (language, default order, deep search engine, lists)", it:"Impostazioni (lingua, ordinamento predefinito, motore per la ricerca profonda, liste)"},
+  d1b:{en:"Local browser storage", it:"Storage locale del browser"},
+  d2a:{en:"Domain votes (👍/👎)", it:"Voti sui domini (👍/👎)"},
+  d2b:{en:"Local browser storage", it:"Storage locale del browser"},
+  d3a:{en:"Saved gems (title, URL, snippet, query, engine, date)", it:"Gemme salvate (titolo, URL, snippet, query, motore, data)"},
+  d3b:{en:"Local browser storage", it:"Storage locale del browser"},
+
+  h3t:{en:"Permissions and why they are needed", it:"Permessi e perché servono"},
+  h3p:{en:"PeRank requests the minimum set of permissions required to work:", it:"PeRank richiede il minimo indispensabile per funzionare:"},
+  colPerm:{en:"Permission", it:"Permesso"},
+  colWhy:{en:"Why", it:"Perché"},
+  p1:{en:"To save your settings, votes and gems locally.", it:"Per salvare in locale impostazioni, voti e gemme."},
+  p2a:{en:"Access to search engine result pages", it:"Accesso alle pagine dei risultati dei motori"},
+  p2b:{en:"To read and rearrange the results shown on those pages. PeRank runs only on the search pages of the supported engines, and on no other website.",
+       it:"Per leggere e riorganizzare i risultati mostrati su quelle pagine. PeRank si attiva solo sulle pagine di ricerca dei motori supportati, e su nessun altro sito."},
+
+  h4t:{en:"Network requests", it:"Richieste di rete"},
+  h4p:{en:"PeRank makes no automatic network requests. The only request it can make is the one you explicitly trigger by clicking the deep search button, which either loads the next page of results from the search engine you are on, or opens the same query on another search engine in a new tab. Nothing is sent to us, because there is no \"us\" to send it to: no server exists.",
+       it:"PeRank non effettua richieste di rete automatiche. L'unica richiesta possibile è quella che avvii esplicitamente cliccando il pulsante della ricerca profonda, che carica la pagina successiva dei risultati dal motore su cui ti trovi oppure apre la stessa ricerca su un altro motore in una nuova scheda. Nulla viene inviato a noi, perché non esiste alcun server a cui inviarlo."},
+
+  h5t:{en:"No tracking, no analytics, no accounts", it:"Nessun tracciamento, nessuna analytics, nessun account"},
+  h5p:{en:"There are no analytics scripts, no cookies set by the extension, no advertising identifiers, no telemetry and no user accounts. Your searches are not logged, profiled or read by anyone but you.",
+       it:"Non ci sono script di analytics, cookie impostati dall'estensione, identificatori pubblicitari, telemetria né account utente. Le tue ricerche non vengono registrate, profilate o lette da nessuno tranne te."},
+
+  h6t:{en:"Deleting your data", it:"Cancellare i tuoi dati"},
+  h6p:{en:"From the extension popup you can reset your domain votes and clear your saved gems at any time. Removing the extension from your browser deletes all of its stored data.",
+       it:"Dal popup dell'estensione puoi azzerare i voti sui domini e svuotare le gemme salvate quando vuoi. Disinstallando l'estensione, tutti i suoi dati vengono eliminati."},
+
+  foot:{en:'PeRank is free software under GPL-3.0. Questions or concerns? Open an issue on <a href="https://github.com/buio2005/perank">GitHub</a>. Part of <a href="https://tivustream.com">TivuStream</a>.',
+        it:'PeRank è software libero con licenza GPL-3.0. Domande o dubbi? Apri una issue su <a href="https://github.com/buio2005/perank">GitHub</a>. Parte di <a href="https://tivustream.com">TivuStream</a>.'}
+};
+function setLang(l){
+  document.documentElement.lang = l;
+  var n = document.querySelectorAll("[data-k]");
+  for (var i=0;i<n.length;i++){ var e = T[n[i].getAttribute("data-k")]; if (e) n[i].innerHTML = e[l]; }
+  document.getElementById("lang").textContent = (l === "en") ? "🇮🇹 Italiano" : "🇬🇧 English";
+  try { localStorage.setItem("perank-lang", l); } catch(e){}
+}
+var saved=null; try { saved = localStorage.getItem("perank-lang"); } catch(e){}
+setLang(saved || ((navigator.language||"en").slice(0,2) === "it" ? "it" : "en"));
+document.getElementById("lang").addEventListener("click", function(){
+  setLang(document.documentElement.lang === "en" ? "it" : "en");
+});
+</script>
+</body>
+</html>
