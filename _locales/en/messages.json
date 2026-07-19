@@ -6,7 +6,7 @@
     "message": "PeRank"
   },
   "extDesc": {
-    "message": "Reverses and re-ranks search results by relevance, hides sponsored ones and helps you dig past page one. Google, Bing, DuckDuckGo, Startpage, Yandex, Brave, Ecosia, Yahoo."
+    "message": "Re-ranks search results by relevance, hides ads and sponsored results, and helps you dig past the first page. No tracking."
   },
   "modeOriginal": {
     "message": "Original"

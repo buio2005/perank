@@ -2,6 +2,11 @@
 
 All notable changes to PeRank. This project follows [semantic versioning](https://semver.org/).
 
+## [0.11.4] - 2026-07-19
+### Fixed
+- Shortened the manifest description to fit the Chrome Web Store limit of 132 characters (it was
+  171). Both the English and Italian strings were trimmed; no change to features.
+
 ## [0.11.3] - 2026-07-19
 ### Security
 - Removed all `innerHTML` assignments (flagged by the AMO validator). The deep-search results
