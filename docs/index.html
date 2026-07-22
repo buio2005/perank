@@ -45,6 +45,9 @@
   .btn-primary:hover{background:#222e53;text-decoration:none}
   .btn-ghost{color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--navy);text-decoration:none}
+  .btn-firefox{background:#ff7139;color:#fff;border-color:#ff7139;display:inline-flex;align-items:center;gap:8px}
+  .btn-firefox:hover{background:#e35b25;border-color:#e35b25;text-decoration:none}
+  .btn-firefox svg{display:block}
   .soon{font-size:12px;color:var(--muted);margin-top:12px}
   .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
@@ -107,7 +110,11 @@
   <h1 data-k="heroTitle"></h1>
   <p class="lead" data-k="heroLead"></p>
   <div class="cta">
-    <a class="btn btn-primary" href="https://github.com/buio2005/perank" data-k="ctaGithub"></a>
+    <a class="btn btn-firefox" href="https://addons.mozilla.org/firefox/addon/perank-results-by-relevance/">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.2 2.2 0 0 1 0 4.4H2V19a2 2 0 0 0 2 2h3.8v-1.5a2.2 2.2 0 0 1 4.4 0V21H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>
+      <span data-k="ctaFirefox"></span>
+    </a>
+    <a class="btn btn-ghost" href="https://github.com/buio2005/perank" data-k="ctaGithub"></a>
     <a class="btn btn-ghost" href="#how" data-k="ctaHow"></a>
   </div>
   <p class="soon" data-k="ctaSoon"></p>
@@ -205,10 +212,11 @@ var T = {
   heroTitle:{en:"Relevance instead of advertising.", it:"Pertinenza al posto della pubblicità."},
   heroLead:{en:"PeRank reverses and re-ranks the results of eight search engines, hides sponsored ones and helps you dig past the first page — where the genuinely useful pages often are.",
             it:"PeRank inverte e riordina i risultati di otto motori di ricerca, nasconde gli sponsor e ti aiuta a scavare oltre la prima pagina — dove spesso stanno le pagine davvero utili."},
+  ctaFirefox:{en:"Get it for Firefox", it:"Aggiungi a Firefox"},
   ctaGithub:{en:"View on GitHub", it:"Guarda su GitHub"},
   ctaHow:{en:"How it works", it:"Come funziona"},
-  ctaSoon:{en:"Free and open source (GPL-3.0). Store listings coming soon.",
-           it:"Gratuito e open source (GPL-3.0). Presto sugli store."},
+  ctaSoon:{en:"Free and open source (GPL-3.0). Chrome version coming soon.",
+           it:"Gratuito e open source (GPL-3.0). Versione Chrome in arrivo."},
   mockOriginal:{en:"Original", it:"Originale"},
   mockReverse:{en:"✓ Reverse", it:"✓ Inverti"},
   mockRelevance:{en:"Relevance", it:"Pertinenza"},

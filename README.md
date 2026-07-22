@@ -6,6 +6,9 @@
 
 **Website: [perank.tivustream.com](https://perank.tivustream.com)** · [Privacy policy](https://perank.tivustream.com/privacy.html)
 
+[![Get it for Firefox](https://img.shields.io/amo/v/perank-results-by-relevance?label=Firefox%20Add-on&logo=firefoxbrowser&logoColor=white&color=ff7139)](https://addons.mozilla.org/firefox/addon/perank-results-by-relevance/)
+&nbsp;![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-in%20review-lightgrey?logo=googlechrome&logoColor=white)
+
 **Relevance instead of advertising.** PeRank reverses and re-ranks search results, hides sponsored
 ones and helps you dig past the first page.
 
@@ -44,7 +47,12 @@ only loads on internal scroll, Startpage proxies result links and paginates with
 We could force it with fragile workarounds, but we chose **not to show a button that fails to keep
 its promise**: better no feature than a deceptive one. If any of these engines changes, we will add it.
 
-## Install (developer mode)
+## Install
+
+**Firefox — [get it from Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/perank-results-by-relevance/)** (reviewed and signed).
+Chrome / Edge / Brave: coming soon to the Chrome Web Store (currently in review). Meanwhile, use developer mode below.
+
+### Developer mode (Chromium)
 
 1. Open `chrome://extensions` (or `brave://extensions`).
 2. Enable **Developer mode** (top right).

@@ -6,6 +6,9 @@
 
 **Sito: [perank.tivustream.com](https://perank.tivustream.com)** · [Informativa privacy](https://perank.tivustream.com/privacy.html)
 
+[![Aggiungi a Firefox](https://img.shields.io/amo/v/perank-results-by-relevance?label=Firefox%20Add-on&logo=firefoxbrowser&logoColor=white&color=ff7139)](https://addons.mozilla.org/firefox/addon/perank-results-by-relevance/)
+&nbsp;![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-in%20revisione-lightgrey?logo=googlechrome&logoColor=white)
+
 **Pertinenza al posto della pubblicità.** Inverte e riordina i risultati di ricerca,
 rimuove gli sponsor e ti aiuta a scavare oltre la prima pagina.
 
@@ -41,7 +44,12 @@ paginazione con token di sessione). Si potrebbe forzare la mano con espedienti f
 preferito **non mostrare un pulsante che non mantiene la promessa**: meglio nessuna funzione che una
 funzione che inganna. Se in futuro uno di questi motori cambierà, la aggiungeremo.
 
-## Installazione (modalità sviluppatore)
+## Installazione
+
+**Firefox — [scaricala da Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/perank-results-by-relevance/)** (revisionata e firmata).
+Chrome / Edge / Brave: presto sul Chrome Web Store (in revisione). Nel frattempo usa la modalità sviluppatore qui sotto.
+
+### Modalità sviluppatore (Chromium)
 
 1. Apri il browser su `chrome://extensions` (o `brave://extensions`).
 2. Attiva **Modalità sviluppatore** (in alto a destra).
